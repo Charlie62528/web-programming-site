@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Key milestones and technologies in the history of the World Wide Web.">
-  <title>History of the World Wide Web</title>
-</head>
-<body>
-  <header>
-    <h1>History of the World Wide Web</h1>
-    <p>From the idea of linked documents to a global application platform</p>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="internet-history-ai">Internet History</a></li>
-        <li><a href="web-history-ai" aria-current="page">Web History</a></li>
-      </ul>
-    </nav>
-  </header>
+{% extends "history-base.html" %}
 
-  <main>
+{% block title %} History of the Web - AI Generated {% endblock %}
+
+{% block content %}
     <section aria-labelledby="introduction">
       <h2 id="introduction">Introduction</h2>
       <p>The World Wide Web is an information system built on top of the Internet. It allows people to access and connect documents and other resources through web browsers. Tim Berners-Lee created it at CERN using three core technologies: HTML, HTTP and URLs. What began as a system for sharing scientific information evolved into a platform for communication, publishing, commerce and software applications.</p>
@@ -195,10 +179,7 @@
         <li><a href="https://www.w3.org/2019/05/WHATWG-W3C-MOU.html">W3C and WHATWG Agreement</a></li>
       </ul>
     </section>
-  </main>
+  
+{% endblock %}
 
-  <footer>
-    <p>Prepared by Charlie Nadher for GIN446 - Web Programming, Fall 2026-2027.</p>
-  </footer>
-</body>
-</html>
+

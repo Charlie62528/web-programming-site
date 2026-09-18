@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of the Web</title>
-</head>
-<body>
-    <header>
-        <h1>History of the Web</h1>
-        <p>Key milestones in the development of the web.</p>
-    </header>
+{% extends "history-base.html" %}
 
+{% block title %} History of the Web {% endblock %}
 
-    <nav>
-     <a href="/">Home</a> |
-     <a href="internet-history">History of the Internet</a> |
-     <a href="web-history">History of the Web</a> |
-    </nav>
-
-   <main>
+{% block content %}
 <section> 
     <h2>Introduction</h2>
 <p>The World Wide Web is an information system built on top of the Internet, giving users the ability to access and link documents and resources through web browsers. It was created at CERN by Tim Berners-Lee and developed using core technologies such as HTML, HTTP, and URLs. It began as a tool for sharing scientific information and has evolved into a dynamic platform that supports communication, applications, and commerce.</p>
@@ -201,6 +185,8 @@ It explained the World Wide Web project and provided instructions for creating s
 
 <a href="https://www.w3.org/groups/wg/webapps/">Web Applications | Working Groups | Discover W3C groups | W3C</a>
 </article>
+ 
+</section>
 
 <section>
     <h2>Three Key Technologies of the Web</h2>
@@ -212,13 +198,5 @@ It explained the World Wide Web project and provided instructions for creating s
     <p> A URL provides the address used to locate and access resources on the Web.</p>
 
     </section>
-</main>
-
-    <footer>
-        <p>Web Programming — built with Flask and deployed on Render.</p>
-        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
-</body>
-</html>
-
+{% endblock %}
 

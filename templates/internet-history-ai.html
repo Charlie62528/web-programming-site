@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Key milestones and technologies in the history of the Internet.">
-  <title>History of the Internet</title>
-</head>
-<body>
-  <header>
-    <h1>History of the Internet</h1>
-    <p>From packet-switching research to a worldwide network of networks</p>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="internet-history-ai" aria-current="page">Internet History</a></li>
-        <li><a href="web-history-ai">Web History</a></li>
-      </ul>
-    </nav>
-  </header>
+{% extends "history-base.html" %}
 
-  <main>
+{% block title %} History of the Internet - AI Generated {% endblock %}
+
+{% block content %}
     <section aria-labelledby="introduction">
       <h2 id="introduction">Introduction</h2>
       <p>The Internet is a worldwide system that connects computers and other devices so they can exchange information. Its development began with research into packet switching and experimental networks such as ARPANET. Technologies including TCP/IP, the Domain Name System and high-speed network infrastructure transformed it from a research network into a global communication system.</p>
@@ -177,10 +161,6 @@
         <li><a href="https://www.worldipv6launch.org/">Internet Society: World IPv6 Launch</a></li>
       </ul>
     </section>
-  </main>
+ {% endblock %}
 
-  <footer>
-    <p>Prepared by Charlie Nadher for GIN446 - Web Programming, Fall 2026-2027.</p>
-  </footer>
-</body>
-</html>
+ 
