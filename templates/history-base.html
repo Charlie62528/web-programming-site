@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {%block title %} History {% endblock %}</title>
-    <link rel="stylesheet" 
-      href="{{ url_for('static', filename='style.css') }}" 
-/>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} History of the Internet and the Web {% endblock %}
+
+{% block header %}
     <header>
         <h1>History of the Internet and the Web</h1>
         <p>Explore the evolution of the internet and the world wide web.</p>
     </header>
+{% endblock %}
 
+{% block navigation %}
 <nav>
      <a href="/">Home</a> |
      <a href="/internet-history">History of the Internet</a> |
@@ -21,15 +16,11 @@
      <a href="/web-history-ai">History of the Web created with AI</a> |
      <a href="/internet-history-ai">History of the Internet created with AI</a> 
     </nav>
+{% endblock %}
 
-    <main>
+    
        {%block content %}{% endblock %}
-    </main>
+    
 
-    <footer>
-    <p>Web Programming — built with Flask and deployed on Render.</p>
-    <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
-</body>
-</html>
+    
 
