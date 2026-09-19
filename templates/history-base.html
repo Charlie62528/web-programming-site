@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 {% block title %} History of the Internet and the Web {% endblock %}
 
-{% block header %}
-    <header>
-        <h1>History of the Internet and the Web</h1>
+{% block content %}
+    <section class="history-section">
+        <h2>History of the Internet and the Web</h2>
         <p>Explore the evolution of the internet and the world wide web.</p>
-    </header>
+    </section>
+{% block history_content %}{% endblock %}
+
 {% endblock %}
 
 {% block navigation %}
 <nav>
-     <a href="/">Home</a> |
-     <a href="/internet-history">History of the Internet</a> |
-     <a href="/web-history">History of the Web</a> |
-     <a href="/web-history-ai">History of the Web created with AI</a> |
-     <a href="/internet-history-ai">History of the Internet created with AI</a> 
-    </nav>
+    <a href="{{ url_for('home') }}">Home</a> |
+    <a href="{{ url_for('internet_history') }}">History of the Internet</a> |
+    <a href="{{ url_for('web_history') }}">History of the Web</a> |
+    <a href="{{ url_for('web_history_ai') }}">History of the Web created with AI</a> |
+    <a href="{{ url_for('internet_history_ai') }}">History of the Internet created with AI</a>
+</nav>
 {% endblock %}
 
     
-       {%block content %}{% endblock %}
+    
     
 
     
