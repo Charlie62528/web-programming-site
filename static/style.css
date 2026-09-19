@@ -4,7 +4,17 @@
     --color-background-deep: #0078c8;
     --color-surface: #080b10;
     --color-surface-light: #111722;
+    --color-surface-hover: #17202d;
     --color-border: rgb(255 255 255 / 18%);
+    --color-border-strong: rgb(255 255 255 / 32%);
+    --color-glass: rgb(5 5 5 / 88%);
+    --color-blue-soft: rgb(0 149 232 / 20%);
+    --color-blue-shadow: rgb(0 149 232 / 15%);
+    --color-white-soft: rgb(255 255 255 / 30%);
+    --color-white-shine: rgb(255 255 255 / 40%);
+    --color-shadow-soft: rgb(0 0 0 / 16%);
+    --color-shadow: rgb(0 0 0 / 20%);
+    --color-shadow-strong: rgb(0 0 0 / 28%);
     --color-text: #ffffff;
     --color-text-dark: #070a0f;
     --color-text-muted: #aab4c3;
@@ -21,6 +31,7 @@
     /* Layout and spacing */
     --content-width: 72rem;
     --reading-width: 48rem;
+    --card-min-width: 15rem;
     --space-xs: 0.5rem;
     --space-sm: 0.75rem;
     --space-md: 1.25rem;
@@ -118,9 +129,9 @@ footer {
     overflow: hidden;
     color: var(--color-text);
     background: var(--color-accent);
-    border: 1px solid rgb(255 255 255 / 30%);
+    border: 1px solid var(--color-white-soft);
     border-radius: var(--radius-small);
-    box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 18%);
+    box-shadow: 0 0.75rem 2rem var(--color-shadow-soft);
     font-size: var(--font-size-small);
     font-weight: 800;
     line-height: 1;
@@ -140,7 +151,7 @@ footer {
     background: linear-gradient(
         110deg,
         transparent 25%,
-        rgb(255 255 255 / 40%) 50%,
+        var(--color-white-shine) 50%,
         transparent 75%
     );
     transform: translateX(-150%);
@@ -150,7 +161,7 @@ footer {
 .site-logo:hover {
     color: var(--color-text-dark);
     background: var(--color-text);
-    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 28%);
+    box-shadow: 0 1rem 2.5rem var(--color-shadow-strong);
     transform: translateY(-4px) rotate(-2deg);
 }
 
@@ -168,7 +179,7 @@ header {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-large);
-    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 20%);
+    box-shadow: 0 1.5rem 4rem var(--color-shadow);
     animation: rise-in 700ms 100ms ease-out both;
 }
 
@@ -218,10 +229,10 @@ header p {
 nav {
     margin-top: var(--space-md);
     padding: var(--space-sm) var(--space-md);
-    background: rgb(5 5 5 / 88%);
+    background: var(--color-glass);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
-    box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 16%);
+    box-shadow: 0 0.75rem 2rem var(--color-shadow-soft);
     backdrop-filter: blur(12px);
     animation: rise-in 700ms 180ms ease-out both;
 }
@@ -230,18 +241,22 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--space-xs) var(--space-md);
     list-style: none;
 }
 
 nav li {
+    flex: 1 1 auto;
     margin: 0;
+    text-align: center;
 }
 
 nav a {
     position: relative;
-    display: inline-block;
+    display: block;
     padding: 0.55rem 0.8rem;
     color: var(--color-text-muted);
     border-radius: var(--radius-small);
@@ -259,7 +274,7 @@ nav a {
 nav a:hover,
 nav a:focus-visible {
     color: var(--color-text);
-    background: rgb(0 149 232 / 20%);
+    background: var(--color-blue-soft);
     transform: translateY(-2px);
 }
 
@@ -288,7 +303,7 @@ section {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-large);
-    box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 16%);
+    box-shadow: 0 1.25rem 3rem var(--color-shadow-soft);
     transition:
         transform var(--transition-smooth),
         box-shadow var(--transition-smooth),
@@ -296,8 +311,8 @@ section {
 }
 
 section:hover {
-    border-color: rgb(255 255 255 / 32%);
-    box-shadow: 0 1.75rem 4rem rgb(0 0 0 / 24%);
+    border-color: var(--color-border-strong);
+    box-shadow: 0 1.75rem 4rem var(--color-shadow);
     transform: translateY(-5px);
 }
 
@@ -389,17 +404,25 @@ li {
     margin-block: var(--space-xs);
 }
 
-main section > ul {
+.weekly-list {
+    margin: 0;
     padding: 0;
     display: grid;
-    gap: var(--space-sm);
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, var(--card-min-width)), 1fr)
+    );
+    gap: var(--space-md);
     list-style: none;
 }
 
-main section > ul > li {
+.weekly-list > li {
     position: relative;
     margin: 0;
     padding: var(--space-md);
+    min-height: 6.5rem;
+    display: flex;
+    align-items: center;
     overflow: hidden;
     background: var(--color-surface-light);
     border: 1px solid var(--color-border);
@@ -411,7 +434,7 @@ main section > ul > li {
         transform var(--transition-smooth);
 }
 
-main section > ul > li::before {
+.weekly-list > li::before {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -424,25 +447,26 @@ main section > ul > li::before {
     transition: transform var(--transition-smooth);
 }
 
-main section > ul > li:hover {
-    background: #17202d;
+.weekly-list > li:hover {
+    background: var(--color-surface-hover);
     border-color: var(--color-background);
-    box-shadow: 0 0.75rem 2rem rgb(0 149 232 / 15%);
-    transform: translateX(8px);
+    box-shadow: 0 0.75rem 2rem var(--color-blue-shadow);
+    transform: translateY(-6px);
 }
 
-main section > ul > li:hover::before {
+.weekly-list > li:hover::before {
     transform: scaleY(1);
 }
 
-main section > ul > li > a {
+.weekly-list > li > a {
+    width: 100%;
     display: block;
     color: var(--color-text);
     font-weight: 650;
     text-decoration: none;
 }
 
-main section > ul > li > a::after {
+.weekly-list > li > a::after {
     display: inline-block;
     margin-left: 0.3rem;
     content: "→";
@@ -450,7 +474,7 @@ main section > ul > li > a::after {
     transition: transform var(--transition-smooth);
 }
 
-main section > ul > li:hover > a::after {
+.weekly-list > li:hover > a::after {
     transform: translateX(6px);
 }
 
@@ -469,7 +493,7 @@ footer {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-large);
-    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+    box-shadow: 0 1rem 3rem var(--color-shadow-soft);
     font-size: var(--font-size-small);
     animation: rise-in 700ms 340ms ease-out both;
 }
@@ -566,7 +590,12 @@ footer p:last-child {
     }
 
     nav ul {
+        justify-content: center;
         gap: var(--space-xs);
+    }
+
+    nav li {
+        flex-basis: calc(50% - var(--space-xs));
     }
 }
 
