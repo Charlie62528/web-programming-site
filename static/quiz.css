@@ -1,0 +1,253 @@
+/* quiz.css — load after style.css, as your template already does.
+   Uses the website's existing :root tokens. No HTML or JS edits needed. */
+
+/* Quiz card: narrower than the site layout, with room on small screens. */
+main.container {
+    width: min(calc(100% - 2rem), 48rem);
+    margin: 2rem auto;
+    padding: 1.25rem;
+    flex: 0 1 auto;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-highlight);
+    border-radius: var(--radius-large);
+    box-shadow: 0 1.5rem 4rem var(--color-shadow-strong);
+    overflow-wrap: anywhere;
+}
+
+/* Title: centered, responsive, and separated from the question. */
+main.container > h1 {
+    margin: 0 0 1.5rem;
+    text-align: center;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    line-height: 1.2;
+}
+
+/* Reset site section cards so the quiz does not have nested moving cards.
+   Neither rule sets display: JS still controls which panel is visible. */
+main.container > #quizPanel,
+main.container > #resultsPanel {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    transition: none;
+}
+
+/* Remove the site's decorative section stripe inside this quiz only. */
+main.container > #quizPanel::before,
+main.container > #resultsPanel::before {
+    content: none;
+}
+
+/* Question counter: a compact badge, not an artificial progress bar. */
+#quizPanel #progress {
+    display: inline-block;
+    margin: 0 0 1rem;
+    padding: 0.4rem 0.8rem;
+    color: var(--color-highlight);
+    background: var(--color-blue-soft);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--font-size-small);
+    font-weight: 700;
+}
+
+/* Question: readable size and enough space above the answer list. */
+#quizPanel #questionText {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    line-height: 1.45;
+}
+
+/* Answer list: consistent gaps between the labels created by JS. */
+#quizPanel #choices {
+    display: grid;
+    gap: 0.75rem;
+}
+
+/* Entire label is clickable; flex keeps the radio next to wrapped text. */
+#quizPanel .choice {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 1rem;
+    min-width: 0;
+    color: var(--color-text);
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color var(--transition-fast),
+                border-color var(--transition-fast),
+                box-shadow var(--transition-fast);
+}
+
+/* Keep the native radio visible and keyboard accessible. */
+#quizPanel .choice input[type="radio"] {
+    flex: 0 0 auto;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    accent-color: var(--color-highlight);
+    cursor: pointer;
+}
+
+/* Selected label follows the real checked state, including restored answers. */
+#quizPanel .choice:has(input:checked) {
+    background: var(--color-blue-soft);
+    border-color: var(--color-highlight);
+    box-shadow: inset 3px 0 0 var(--color-highlight);
+}
+
+/* Focus outlines show keyboard users which answer or button is active. */
+#quizPanel .choice:focus-within,
+#quizPanel button:focus-visible {
+    outline: 2px solid var(--color-highlight);
+    outline-offset: 3px;
+}
+
+/* Navigation: two columns on phones; four on larger screens. */
+#quizPanel .navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+/* Shared quiz button appearance and comfortable touch target. */
+#quizPanel button {
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    color: var(--color-text);
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-medium);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition-fast),
+                border-color var(--transition-fast),
+                transform var(--transition-fast);
+}
+
+/* Disabled navigation reflects the state already set by renderQuestion(). */
+#quizPanel button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Submit: stronger contrast and full width to emphasize the final action. */
+#quizPanel button.submit {
+    width: 100%;
+    margin-top: 1.25rem;
+    color: var(--color-text-dark);
+    background: var(--color-highlight);
+    border-color: var(--color-highlight);
+}
+
+/* Press feedback applies only to enabled buttons. */
+#quizPanel button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* Initially hidden; the JS inline display:block overrides this on submit. */
+#resultsPanel {
+    display: none;
+}
+
+/* Results heading uses the same scale as the question. */
+#resultsPanel h2 {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+}
+
+/* Score and percentage: separate summary cards. */
+#resultsPanel #scoreText,
+#resultsPanel #percentageText {
+    margin: 0 0 0.75rem;
+    padding: 1rem;
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    font-size: var(--font-size-large);
+    font-weight: 700;
+}
+
+/* Performance message: neutral emphasis for any score. */
+#resultsPanel #performanceText {
+    margin: 1.25rem 0;
+    color: var(--color-highlight);
+    font-weight: 600;
+}
+
+/* Correction label separates the summary from the detailed feedback. */
+#resultsPanel h3 {
+    margin: 1.75rem 0 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* Plain-text correction: preserve line breaks, wrap long lines on phones. */
+#resultsPanel #correction {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    line-height: 1.8;
+}
+
+/* Hover feedback only on devices that support a precise pointer. */
+@media (hover: hover) and (pointer: fine) {
+    #quizPanel .choice:hover {
+        border-color: var(--color-highlight);
+    }
+
+    #quizPanel button:hover:not(:disabled):not(.submit) {
+        background: var(--color-surface-hover);
+        border-color: var(--color-highlight);
+    }
+
+    #quizPanel button.submit:hover:not(:disabled) {
+        background: var(--color-text);
+        border-color: var(--color-text);
+    }
+}
+
+/* Larger screens: more card padding and a single navigation row. */
+@media (min-width: 40rem) {
+    main.container {
+        padding: 2.25rem;
+        margin-block: 2.5rem;
+    }
+
+    #quizPanel .navigation {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Respect reduced-motion settings for the quiz's interactive elements. */
+@media (prefers-reduced-motion: reduce) {
+    #quizPanel .choice,
+    #quizPanel button {
+        transition: none;
+    }
+
+    #quizPanel button:active:not(:disabled) {
+        transform: none;
+    }
+}
