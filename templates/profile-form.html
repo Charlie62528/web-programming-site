@@ -15,6 +15,7 @@
 
 <form action="{{ url_for('submit_profile') }}"
  method="post">
+<input type="hidden" name="form_version" value="2026-2027">
 
   <fieldset>
     <legend>1. Personal Information</legend>
@@ -65,32 +66,50 @@
 <label for="credits">Credits Completed:</label>
 <input type="number" id="credits" name="credits" min="0" max="146" required> <br>
 
-<label for="graduation">Expected Graduation:</label> <br>
-<input type="radio" id="graduation" name="graduation" value="Spring" required> Spring
-<input type="radio" id="graduation" name="graduation" value="Summer" required> Summer
-<input type="radio" id="graduation" name="graduation" value="Fall" required> Fall <br>
+<fieldset>
+    <legend>Expected Graduation</legend>
+
+    <input type="radio" id="graduation_spring"
+           name="graduation" value="Spring" required>
+    <label for="graduation_spring">Spring</label>
+
+    <input type="radio" id="graduation_summer"
+           name="graduation" value="Summer" required>
+    <label for="graduation_summer">Summer</label>
+
+    <input type="radio" id="graduation_fall"
+           name="graduation" value="Fall" required>
+    <label for="graduation_fall">Fall</label>
+</fieldset>
 
 <label for="graduation_month">Expected Graduation Month & Year:</label>
 <input type="month" id="graduation_month" name="graduation_month" placeholder="--------- ----" required> <br>
 
-<label for="internship_completed">Have you completed an engineering internship? </label> <br>
-<input type="radio" id="internship_completed" name="internship_completed" value="Yes" required> Yes
-<input type="radio" id="internship_completed" name="internship_completed" value="No" required> No
+<fieldset>
+    <legend>Have you completed an engineering internship?</legend>
 
+    <input type="radio" id="internship_yes"
+           name="internship_completed" value="Yes" required>
+    <label for="internship_yes">Yes</label>
+
+    <input type="radio" id="internship_no"
+           name="internship_completed" value="No" required>
+    <label for="internship_no">No</label>
+</fieldset>
 </fieldset>
 
 <fieldset>
 <legend>3. Technical Background</legend>
 
 <label for="skills">Select all areas in which you have experience:</label> <br>
-<input type="checkbox" id="skills" name="skills" value="Programming"  > Programming <br>
-<input type="checkbox" id="skills" name="skills" value="Embedded Systems" > Embedded Systems <br>
-<input type="checkbox" id="skills" name="skills" value="Electronics" > Electronics <br>
-<input type="checkbox" id="skills" name="skills" value="Computer Networks"  > Computer Networks <br>
-<input type="checkbox" id="skills" name="skills" value="Telecommunications" > Telecommunications <br>
-<input type="checkbox" id="skills" name="skills" value="Biomedical Instrumentation" > Biomedical Instrumentation <br>
-<input type="checkbox" id="skills" name="skills" value="Artificial Intelligence / Machine Learning" > Artificial Intelligence / Machine Learning <br>
-<input type="checkbox" id="skills" name="skills" value="Signal Processing" >Signal Processing <br>
+<input type="checkbox" id="skill_programming" name="skills" value="Programming"  > Programming <br>
+<input type="checkbox" id="skill_embedded" name="skills" value="Embedded Systems" > Embedded Systems <br>
+<input type="checkbox" id="skill_electronics" name="skills" value="Electronics" > Electronics <br>
+<input type="checkbox" id="skill_networks" name="skills" value="Computer Networks"  > Computer Networks <br>
+<input type="checkbox" id="skill_telecommunications" name="skills" value="Telecommunications" > Telecommunications <br>
+<input type="checkbox" id="skill_biomedical" name="skills" value="Biomedical Instrumentation" > Biomedical Instrumentation <br>
+<input type="checkbox" id="skill_ai" name="skills" value="Artificial Intelligence / Machine Learning" > Artificial Intelligence / Machine Learning <br>
+<input type="checkbox" id="skill_signal_processing" name="skills" value="Signal Processing" >Signal Processing <br>
 
 <label for="language">Primary Programming Language:</label>
 <input type="text" id="language" name="language" placeholder="Start typing..." required> <br>
@@ -172,14 +191,17 @@
 
 </fieldset>
 
-<fieldset>
 
-  <input type="checkbox" id="confirmation" name="confirmation" required>
-  <label for="confirmation">I confirm that the information provided is accurate.</label> <br>
+<div class="form-actions">
+    <input type="checkbox" id="confirmation" name="confirmation" required>
+    <label for="confirmation">
+        I confirm that the information provided is accurate.
+    </label>
+    <br>
 
-  <input type="submit" value="Submit Profile">
-  <input type="reset" value="Clear Form">
+    <input type="submit" value="Submit Profile">
+    <input type="reset" value="Clear Form">
+</div>
 
-</fieldset>
 </form>
 {% endblock %}

@@ -151,3 +151,17 @@ main > form input:is([type="submit"], [type="reset"]):hover {
     padding: var(--space-lg);
   }
 }
+
+.form-actions {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #080b10;
+    color: #ffffff;
+    border-radius: 14px;
+}
+
+@media (min-width: 48rem) {
+    .form-actions {
+        padding: 2.5rem;
+    }
+}

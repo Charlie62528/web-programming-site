@@ -21,8 +21,19 @@
     </header>
     {% endblock %}
 
-    {% block navigation %}
-    {% endblock %}
+
+{% block navigation %}
+<nav aria-label="Main navigation">
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('internet_history') }}">History of the Internet</a></li>
+        <li><a href="{{ url_for('web_history') }}">History of the Web</a></li>
+        <li><a href="{{ url_for('web_history_ai') }}">History of the Web created with AI</a></li>
+        <li><a href="{{ url_for('internet_history_ai') }}">History of the Internet created with AI</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
 
 
     <main>
