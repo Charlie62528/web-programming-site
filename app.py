@@ -40,6 +40,8 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+from quiz_api import init_quiz
+init_quiz(app)
 
 @app.route("/")
 def home():
@@ -100,3 +102,6 @@ def quiz():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+

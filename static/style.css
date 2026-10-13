@@ -182,7 +182,7 @@ header {
     box-shadow: 0 1.5rem 4rem var(--color-shadow);
     animation: rise-in 700ms 100ms ease-out both;
 }
-
+/* Create the circle in the header background */
 header::after {
     position: absolute;
     top: -7rem;
@@ -197,6 +197,7 @@ header::after {
     animation: float-orb 7s ease-in-out infinite;
 }
 
+
 header h1 {
     position: relative;
     z-index: 1;
@@ -208,7 +209,7 @@ header h1 {
     line-height: 1.05;
     letter-spacing: -0.055em;
 }
-
+/* Add a pulsing dot after the header text */
 header h1::after {
     content: ".";
     color: var(--color-background);
@@ -535,7 +536,7 @@ footer p:last-child {
         transform: translateY(0);
     }
 }
-
+/* animations for the circle in the header background */
 @keyframes float-orb {
     0%,
     100% {
@@ -546,7 +547,7 @@ footer p:last-child {
         transform: translate(-2rem, 2rem) scale(1.12);
     }
 }
-
+/* animations for the pulsing dot after the header text */
 @keyframes pulse-dot {
     0%,
     100% {
