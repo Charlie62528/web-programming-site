@@ -165,3 +165,14 @@ main > form input:is([type="submit"], [type="reset"]):hover {
         padding: 2.5rem;
     }
 }
+.panel {
+    display: none;
+}
+
+.panel.open {
+    display: block;
+}
+
+#reviewContent {
+    white-space: pre-line;
+}
