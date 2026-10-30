@@ -12,7 +12,7 @@
         href="{{ url_for('static', filename='form_style.css') }}"/>
 {% endblock %}
 
-
+//week 8
 {% block content %}
 
 <h2>Engineering Student Profile</h2>
@@ -280,6 +280,17 @@ endif %}>MATLAB</option>
 
 </form>
 
+<section id="reviewPanel" class="panel">
+    <h2>Review Your Profile</h2>
+
+    <div id="reviewContent"></div>
+
+    <button type="button" id="editButton">Edit</button>
+    <button type="button" id="confirmButton">Confirm and Submit</button>
+</section>
+
+
+<script src="{{ url_for('static', filename='profile.js') }}"  defer></script>
 
 
 {% endblock %}
