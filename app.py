@@ -37,6 +37,7 @@ Example inside profile.html (which extends your base.html):
 """
 
 from flask import Flask, render_template, request
+from validators import validate_profile  
 
 app = Flask(__name__)
 
@@ -104,7 +105,37 @@ def profile_week6():
     return render_template("profile-form2.html")
 
 
+@app.route("/profile-validated", methods=["GET", "POST"])
+def profile_validated():
+    if request.method == "POST":
+        errors, cleaned = validate_profile(request.form)
 
+        if errors:
+            # Show the form again with errors and submitted values.
+            return render_template(
+                "profile-form-validated.html",
+                errors=errors,
+                data=request.form,
+                sel_skills=request.form.getlist("skills"),
+                sel_software=request.form.getlist("software"),
+            )
+
+        # Valid submission: show the profile results page.
+        return render_template(
+            "profile.html",
+            data=cleaned,
+            skills=cleaned.get("skills", []),
+            software=cleaned.get("software", []),
+        )
+
+    # First visit: show an empty form.
+    return render_template(
+        "profile-form-validated.html",
+        errors={},
+        data={},
+        sel_skills=[],
+        sel_software=[],
+    )
 
 
 @app.route("/quiz", methods=["GET", "POST"])
